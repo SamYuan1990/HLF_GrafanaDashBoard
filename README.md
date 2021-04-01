@@ -22,3 +22,12 @@ Grafana Dash board for hyperledger fabric(ref [Metrics](https://hyperledger-fabr
 
 ### Orderer
 1. Orderer related Metrics.
+
+## To Do List
+1. Variable in Grafana to switch host, channel etc.
+1. Change and understanding each metrics to have a good display and UX.
+1. Customer defined metrics(basing on Fabric Metics doing sum/avg... etc)
+1. General Alert
+
+## How to develop
+1. [video in chinese](https://www.bilibili.com/video/BV1LU4y1h7sB/)
