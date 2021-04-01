@@ -30,4 +30,4 @@ Grafana Dash board for hyperledger fabric(ref [Metrics](https://hyperledger-fabr
 1. General Alert
 
 ## How to develop
-1. [video in chinese](https://www.bilibili.com/video/BV1LU4y1h7sB/)
+1. [video in chinese](https://www.bilibili.com/video/bv1LU4y1h7sB)
