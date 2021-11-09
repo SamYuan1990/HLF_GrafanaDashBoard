@@ -8,14 +8,21 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 6,
+  "id": 26,
   "links": [
     {
       "icon": "external link",
@@ -32,6 +39,7 @@
       "url": "https://github.com/SamYuan1990/HLF_GrafanaDashBoard/blob/main/LICENSE"
     }
   ],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -48,13 +56,12 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -92,9 +99,10 @@
         "showUnfilled": true,
         "text": {}
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
+          "exemplar": true,
           "expr": "cluster_comm_egress_queue_capacity",
           "format": "table",
           "interval": "",
@@ -102,6 +110,7 @@
           "refId": "A"
         },
         {
+          "exemplar": true,
           "expr": "cluster_comm_egress_queue_length",
           "format": "table",
           "hide": false,
@@ -110,6 +119,7 @@
           "refId": "B"
         },
         {
+          "exemplar": true,
           "expr": "cluster_comm_egress_queue_workers",
           "format": "table",
           "hide": false,
@@ -118,6 +128,7 @@
           "refId": "C"
         },
         {
+          "exemplar": true,
           "expr": "cluster_comm_egress_stream_count",
           "format": "table",
           "hide": false,
@@ -126,6 +137,7 @@
           "refId": "D"
         },
         {
+          "exemplar": true,
           "expr": "cluster_comm_egress_tls_connection_count",
           "format": "table",
           "hide": false,
@@ -134,6 +146,7 @@
           "refId": "E"
         },
         {
+          "exemplar": true,
           "expr": "cluster_comm_ingress_stream_count",
           "format": "table",
           "hide": false,
@@ -150,18 +163,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {},
-          "custom": {},
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          }
-        },
-        "overrides": []
-      },
+      "datasource": "prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -188,7 +190,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "8.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -198,12 +200,14 @@
       "steppedLine": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "rate(consensus_etcdraft_normal_proposals_received[5m])",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         },
         {
+          "exemplar": true,
           "expr": "rate(consensus_etcdraft_proposal_failures[5m])",
           "hide": false,
           "interval": "",
@@ -257,13 +261,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -290,7 +288,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "8.2.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -300,12 +298,14 @@
       "steppedLine": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "rate(deliver_blocks_sent[5m])",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         },
         {
+          "exemplar": true,
           "expr": "rate(deliver_requests_completed[5m])",
           "hide": false,
           "interval": "",
@@ -313,6 +313,7 @@
           "refId": "B"
         },
         {
+          "exemplar": true,
           "expr": "rate(deliver_requests_received[5m])",
           "hide": false,
           "interval": "",
@@ -320,6 +321,7 @@
           "refId": "C"
         },
         {
+          "exemplar": true,
           "expr": "rate(deliver_streams_closed[5m])",
           "hide": false,
           "interval": "",
@@ -327,6 +329,7 @@
           "refId": "D"
         },
         {
+          "exemplar": true,
           "expr": "rate(deliver_streams_opened[5m])",
           "hide": false,
           "interval": "",
@@ -376,13 +379,12 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -420,15 +422,17 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_active_nodes",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         },
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_cluster_size",
           "hide": false,
           "interval": "",
@@ -436,6 +440,7 @@
           "refId": "B"
         },
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_committed_block_number",
           "hide": false,
           "interval": "",
@@ -443,6 +448,7 @@
           "refId": "C"
         },
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_config_proposals_received",
           "hide": false,
           "interval": "",
@@ -450,6 +456,7 @@
           "refId": "D"
         },
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_is_leader",
           "hide": false,
           "interval": "",
@@ -457,6 +464,7 @@
           "refId": "E"
         },
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_leader_changes",
           "hide": false,
           "interval": "",
@@ -464,6 +472,7 @@
           "refId": "F"
         },
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_normal_proposals_received",
           "hide": false,
           "interval": "",
@@ -471,6 +480,7 @@
           "refId": "G"
         },
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_proposal_failures",
           "hide": false,
           "interval": "",
@@ -478,6 +488,7 @@
           "refId": "H"
         },
         {
+          "exemplar": true,
           "expr": "consensus_etcdraft_snapshot_block_number",
           "hide": false,
           "interval": "",
@@ -489,13 +500,12 @@
       "type": "gauge"
     },
     {
-      "datasource": null,
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -521,6 +531,7 @@
       },
       "id": 20,
       "options": {
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -532,9 +543,10 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
+          "exemplar": true,
           "expr": "cluster_comm_msg_dropped_count",
           "interval": "",
           "legendFormat": "",
@@ -547,13 +559,12 @@
       "type": "gauge"
     },
     {
-      "datasource": null,
+      "datasource": "prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -582,9 +593,10 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "7.4.3",
+      "pluginVersion": "8.2.2",
       "targets": [
         {
+          "exemplar": true,
           "expr": "broadcast_processed_count",
           "interval": "",
           "legendFormat": "",
@@ -609,18 +621,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "timeseries",
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {},
-          "custom": {},
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          }
-        },
-        "overrides": []
-      },
+      "datasource": "prometheus",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -638,7 +639,8 @@
       "reverseYBuckets": false,
       "targets": [
         {
-          "expr": "  histogram_quantile(0.95, sum(rate(cluster_comm_msg_send_time_bucket[5m])) by (le))",
+          "exemplar": true,
+          "expr": "histogram_quantile(0.95, sum(rate(cluster_comm_msg_send_time_bucket[5m])) by (le))",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -681,18 +683,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {},
-          "custom": {},
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          }
-        },
-        "overrides": []
-      },
+      "datasource": "prometheus",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -710,11 +701,11 @@
       "reverseYBuckets": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "histogram_quantile(0.95, sum(rate(broadcast_enqueue_duration_bucket[30s])) by (le))",
-          "format": "heatmap",
           "interval": "",
-          "legendFormat": "{{le}}",
-          "refId": "broadcast_enqueue_duration_bucket"
+          "legendFormat": "",
+          "refId": "A"
         }
       ],
       "timeFrom": null,
@@ -756,13 +747,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "prometheus",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -780,11 +765,12 @@
       "reverseYBuckets": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "blockcutter_block_fill_duration_bucket",
           "format": "heatmap",
           "interval": "",
           "legendFormat": "{{le}}",
-          "refId": "blockcutter_block_fill_duration_bucket"
+          "refId": "A"
         }
       ],
       "title": "blockcutter_block_fill_duration",
@@ -824,13 +810,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
+      "datasource": "prometheus",
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -848,11 +828,12 @@
       "reverseYBuckets": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "broadcast_validate_duration_bucket",
           "format": "heatmap",
           "interval": "",
           "legendFormat": "{{le}}",
-          "refId": "broadcast_validate_duration_bucket"
+          "refId": "A"
         }
       ],
       "title": "broadcast_validate_duration",
@@ -892,18 +873,7 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": null,
-      "fieldConfig": {
-        "defaults": {
-          "color": {},
-          "custom": {},
-          "thresholds": {
-            "mode": "absolute",
-            "steps": []
-          }
-        },
-        "overrides": []
-      },
+      "datasource": "prometheus",
       "gridPos": {
         "h": 8,
         "w": 24,
@@ -921,11 +891,12 @@
       "reverseYBuckets": false,
       "targets": [
         {
+          "exemplar": true,
           "expr": "ledger_blockstorage_commit_time_bucket",
           "format": "heatmap",
           "interval": "",
           "legendFormat": "{{le}}",
-          "refId": "ledger_blockstorage_commit_time_bucket"
+          "refId": "A"
         }
       ],
       "timeFrom": null,
@@ -955,20 +926,20 @@
       "yBucketSize": null
     }
   ],
-  "refresh": false,
-  "schemaVersion": 27,
+  "refresh": "5s",
+  "schemaVersion": 31,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": []
   },
   "time": {
-    "from": "2021-03-27T09:55:41.632Z",
-    "to": "2021-03-27T10:02:27.700Z"
+    "from": "now-5m",
+    "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Hyperledger Fabric Orderer Dash Board",
   "uid": "TIx8QQsMk",
-  "version": 3
+  "version": 15
 }
