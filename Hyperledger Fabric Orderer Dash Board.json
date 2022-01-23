@@ -23,6 +23,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 26,
+  "iteration": 1642927326223,
   "links": [
     {
       "icon": "external link",
@@ -201,14 +202,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(consensus_etcdraft_normal_proposals_received[5m])",
+          "expr": "rate(consensus_etcdraft_normal_proposals_received{channel=\"$channel\", job=~\"$job\"}[5m])",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "rate(consensus_etcdraft_proposal_failures[5m])",
+          "expr": "rate(consensus_etcdraft_proposal_failures{channel=\"$channel\", job=~\"$job\"}[5m])",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -299,14 +300,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(deliver_blocks_sent[5m])",
+          "expr": "rate(deliver_blocks_sent{channel=\"$channel\", job=~\"$job\"}[5m])",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "rate(deliver_requests_completed[5m])",
+          "expr": "rate(deliver_requests_completed{channel=\"$channel\", job=~\"$job\"}[5m])",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -426,14 +427,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_active_nodes",
+          "expr": "consensus_etcdraft_active_nodes{channel=\"$channel\", job=~\"$job\"}",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_cluster_size",
+          "expr": "consensus_etcdraft_cluster_size{channel=\"$channel\", job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -441,7 +442,7 @@
         },
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_committed_block_number",
+          "expr": "consensus_etcdraft_committed_block_number{channel=\"$channel\", job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -449,7 +450,7 @@
         },
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_config_proposals_received",
+          "expr": "consensus_etcdraft_config_proposals_received{channel=\"$channel\", job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -457,7 +458,7 @@
         },
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_is_leader",
+          "expr": "consensus_etcdraft_is_leader{channel=\"$channel\", job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -465,7 +466,7 @@
         },
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_leader_changes",
+          "expr": "consensus_etcdraft_leader_changes{channel=\"$channel\", job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -473,7 +474,7 @@
         },
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_normal_proposals_received",
+          "expr": "consensus_etcdraft_normal_proposals_received{channel=\"$channel\", job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -481,7 +482,7 @@
         },
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_proposal_failures",
+          "expr": "consensus_etcdraft_proposal_failures{channel=\"$channel\", job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -489,7 +490,7 @@
         },
         {
           "exemplar": true,
-          "expr": "consensus_etcdraft_snapshot_block_number",
+          "expr": "consensus_etcdraft_snapshot_block_number{channel=\"$channel\", job=~\"$job\"}",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -931,7 +932,66 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "mychannel",
+          "value": "mychannel"
+        },
+        "datasource": "prometheus",
+        "definition": "label_values(ledger_blockchain_height,channel)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "channel",
+        "multi": false,
+        "name": "channel",
+        "options": [],
+        "query": {
+          "query": "label_values(ledger_blockchain_height,channel)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": [
+            "org0-orderer1"
+          ],
+          "value": [
+            "org0-orderer1"
+          ]
+        },
+        "datasource": "prometheus",
+        "definition": "label_values(ledger_blockchain_height,job)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "job",
+        "multi": true,
+        "name": "job",
+        "options": [],
+        "query": {
+          "query": "label_values(ledger_blockchain_height,job)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-5m",
@@ -941,5 +1001,5 @@
   "timezone": "",
   "title": "Hyperledger Fabric Orderer Dash Board",
   "uid": "TIx8QQsMk",
-  "version": 15
+  "version": 6
 }

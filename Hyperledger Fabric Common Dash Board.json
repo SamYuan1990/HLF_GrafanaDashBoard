@@ -23,6 +23,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 25,
+  "iteration": 1642926716009,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -84,6 +85,7 @@
       "repeat": null,
       "targets": [
         {
+          "exemplar": true,
           "expr": "fabric_version",
           "format": "table",
           "instant": true,
@@ -155,8 +157,9 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(ledger_blockchain_height[1m])",
+          "expr": "rate(ledger_blockchain_height{channel=\"$channel\", job=~\"$job\"}[1m])",
           "format": "time_series",
+          "hide": false,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -245,7 +248,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(ledger_blockchain_height) by (channel,job)",
+          "expr": "sum(ledger_blockchain_height{channel=\"$channel\", job=~\"$job\"}) by (job)",
           "interval": "",
           "legendFormat": "{{channel}} {{job}}",
           "refId": "A"
@@ -366,7 +369,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(ledger_transaction_count{transaction_type=\"ENDORSER_TRANSACTION\"}[1m])) by (channel)",
+          "exemplar": true,
+          "expr": "sum(rate(ledger_transaction_count{transaction_type=\"ENDORSER_TRANSACTION\",channel=\"$channel\"}[1m]))",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -454,7 +458,8 @@
       "pluginVersion": "8.2.2",
       "targets": [
         {
-          "expr": "sum(ledger_transaction_count{transaction_type=\"ENDORSER_TRANSACTION\"}) by (channel,job)",
+          "exemplar": true,
+          "expr": "sum(ledger_transaction_count{transaction_type=\"ENDORSER_TRANSACTION\",channel=\"$channel\", job=~\"$job\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -650,7 +655,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(grpc_comm_conn_closed[5m])",
+          "expr": "rate(grpc_comm_conn_closed{job=~\"$job\"}[5m])",
           "format": "time_series",
           "interval": "",
           "legendFormat": "",
@@ -658,7 +663,7 @@
         },
         {
           "exemplar": true,
-          "expr": "rate(grpc_comm_conn_opened[5m])",
+          "expr": "rate(grpc_comm_conn_opened{job=~\"$job\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -667,7 +672,7 @@
         },
         {
           "exemplar": true,
-          "expr": "rate(grpc_server_stream_messages_received[5m])",
+          "expr": "rate(grpc_server_stream_messages_received{job=~\"$job\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -676,7 +681,7 @@
         },
         {
           "exemplar": true,
-          "expr": "rate(grpc_server_stream_messages_sent[5m])",
+          "expr": "rate(grpc_server_stream_messages_sent{job=~\"$job\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -685,7 +690,7 @@
         },
         {
           "exemplar": true,
-          "expr": "rate(grpc_server_stream_requests_completed[5m])",
+          "expr": "rate(grpc_server_stream_requests_completed{job=~\"$job\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -694,7 +699,7 @@
         },
         {
           "exemplar": true,
-          "expr": "rate(grpc_server_stream_requests_received[5m])",
+          "expr": "rate(grpc_server_stream_requests_received{job=~\"$job\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -703,7 +708,7 @@
         },
         {
           "exemplar": true,
-          "expr": "rate(grpc_server_unary_requests_completed[5m])",
+          "expr": "rate(grpc_server_unary_requests_completed{job=~\"$job\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -712,7 +717,7 @@
         },
         {
           "exemplar": true,
-          "expr": "rate(grpc_server_unary_requests_received[5m])",
+          "expr": "rate(grpc_server_unary_requests_received{job=~\"$job\"}[5m])",
           "format": "time_series",
           "hide": false,
           "interval": "",
@@ -929,14 +934,14 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "rate(logging_entries_checked[5m])",
+          "expr": "rate(logging_entries_checked{job=~\"$job\"}[5m])",
           "interval": "",
           "legendFormat": "",
           "refId": "A"
         },
         {
           "exemplar": true,
-          "expr": "rate(logging_entries_written[5m])",
+          "expr": "rate(logging_entries_written{job=~\"$job\"}[5m])",
           "hide": false,
           "interval": "",
           "legendFormat": "",
@@ -990,7 +995,66 @@
   "style": "dark",
   "tags": [],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "mychannel",
+          "value": "mychannel"
+        },
+        "datasource": "prometheus",
+        "definition": "label_values(ledger_blockchain_height,channel)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "channel",
+        "multi": false,
+        "name": "channel",
+        "options": [],
+        "query": {
+          "query": "label_values(ledger_blockchain_height,channel)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".*",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "prometheus",
+        "definition": "label_values(ledger_blockchain_height,job)",
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": true,
+        "label": "job",
+        "multi": true,
+        "name": "job",
+        "options": [],
+        "query": {
+          "query": "label_values(ledger_blockchain_height,job)",
+          "refId": "StandardVariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
   },
   "time": {
     "from": "now-5m",
@@ -1000,5 +1064,5 @@
   "timezone": "",
   "title": "Hyperledger Fabric Common Dash Board",
   "uid": "yWvQwwsGk",
-  "version": 9
+  "version": 27
 }
